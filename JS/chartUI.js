@@ -72,6 +72,17 @@
       },
       options: {
         legend: false,
+        legendCallback: function(chart) {
+          var legend = [];
+          var labels = chart.data.datasets[0].data.length;
+          var databg = chart.data.datasets[0].backgroundColor;
+          if (chart.data.labels) {
+            for (var i = 0, l = labels; i < l; i++) {
+              legend.push('<li class="legend-list">' + '<span class="legend-bg" style="background-color: '+ databg[i] +' "></span>' + chart.data.labels[i] + '</li>');
+            }
+          }
+          return legend.join('');
+        },
         layout: {
           padding: {
             top: 50
@@ -79,6 +90,8 @@
         }
       }
     });
+
+    $('.barChart-legend').html(barChart.generateLegend());
   }
 
   function radarChart() {

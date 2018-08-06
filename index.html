@@ -10,11 +10,29 @@
       margin: 0 auto;
       max-width: 600px;
     }
+    .barChart-legend {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .legend-list {
+      display: table;
+      line-height: 20px;
+    }
+    .legend-bg {
+      display: table-cell;
+      
+      width: 30px;
+      height: 20px;
+      padding-right: 8px;
+    }
+
   </style>
 </head>
 <body>
   <canvas id="polarChart" class="chart" width="400" height="400"></canvas>
   <canvas id="barChart" class="chart" width="400" height="400"></canvas>
+  <ul class="barChart-legend"></ul>
   <canvas id="radarChart" class="chart" width="400" height="400"></canvas>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
