@@ -48,7 +48,7 @@
     var barChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels : [
+        labels: [
           'area1',
           'area2',
           'area3',
@@ -72,21 +72,42 @@
       },
       options: {
         legend: false,
-        legendCallback: function(chart) {
+        legendCallback: function (chart) {
           var legend = [];
           var labels = chart.data.datasets[0].data.length;
           var databg = chart.data.datasets[0].backgroundColor;
           if (chart.data.labels) {
             for (var i = 0, l = labels; i < l; i++) {
-              legend.push('<li class="legend-list">' + '<span class="legend-bg" style="background-color: '+ databg[i] +' "></span>' + chart.data.labels[i] + '</li>');
+legend.push('<li class="legend-list"><span class="legend-bg" style="background-color: ' + databg[i] + ' "></span>' + '<span class="legend-text">' + chart.data.labels[i] + '</span>' + '</li>');
             }
           }
           return legend.join('');
         },
-        layout: {
-          padding: {
-            top: 50
-          }
+        scales: {
+          xAxes: [{
+            // display: false,
+            barThickness: 16,
+            gridLines: {
+              color: '#fff',
+              drawTicks: false
+            },
+            ticks: {
+              padding: 15, // set space between xAxes and chart
+              fontColor: '#7e7e7e',
+              
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              borderDash: [15],
+              drawTicks: false
+            },
+            ticks: {
+              padding: 15, // set space between yAxes and chart
+              fontColor: '#7e7e7e'
+            }
+          }]
+          
         }
       }
     });
@@ -126,7 +147,54 @@
     });
   }
 
-  polarChart();
-  barChart();
-  radarChart();
+  // 특정 페이지의 y축에 다다르면 차트 그려줌
+  function renderChart() {
+    // 차트가 그려졌는지 확인
+    var polarRendered = false;
+    var barRendered = false;
+    var radarRendered = false;
+    // 폴라 차트
+    var polarY = $('.polar').offset().top;
+    var polarHeight = $('.polar').height();
+    // 바 차트
+    // 엘레멘트의 브라우저의 y 위치 값
+    var barY = $('.bar').offset().top;
+    // 엘레멘트의 높이 값
+    var barHeight = $('.bar').height();
+    // 레이다 차트
+    var radarY = $('.radar').offset().top;
+    var radarHeight = $('.radar').height();
+
+    $(window).scroll(function() {
+      var moved = $(this).scrollTop();
+      console.log(moved);
+      // 폴라 차트가 그려지는 시점
+      var polarCon = polarY - (polarHeight / 2);
+      // 바 차트가 그려지는 시점
+      var barCon = barY - (barHeight / 2);
+      // 레이다 차트가 그려지는 시점
+      var radarCon = radarY - (radarHeight / 2);
+
+      console.log('polar condition', polarCon);
+      console.log('bar condition', barCon);
+      console.log('radarCon', radarCon);
+
+      if (moved > polarCon && !polarRendered) {
+        polarRendered = true;
+        polarChart();
+      }
+      if (moved > barCon && !barRendered) {
+        barRendered = true;
+        barChart();
+      }
+      if (moved > radarCon && !radarRendered) {
+        radarRendered = true;
+        radarChart();
+      }
+    });
+  };
+
+  renderChart();
+
 })();
+
