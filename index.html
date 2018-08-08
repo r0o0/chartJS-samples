@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chart JS test</title>
-  <style>
-    .chart {
-      margin: 0 auto;
-      max-width: 600px;
-    }
-    .barChart-legend {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .legend-list {
-      display: table;
-      line-height: 20px;
-    }
-    .legend-bg {
-      display: table-cell;
-      
-      width: 30px;
-      height: 20px;
-      padding-right: 8px;
-    }
-
-  </style>
+  <link rel="stylesheet" href="./CSS/style.css">
 </head>
+
 <body>
-  <canvas id="polarChart" class="chart" width="400" height="400"></canvas>
-  <canvas id="barChart" class="chart" width="400" height="400"></canvas>
-  <ul class="barChart-legend"></ul>
-  <canvas id="radarChart" class="chart" width="400" height="400"></canvas>
-  
+  <h1 class="title">Chart JS Experiment</h1>
+  <div class="charts">
+    <div class="polar">
+      <canvas id="polarChart" class="chart" width="400" height="400"></canvas>
+    </div>
+    <div class="bar">
+      <canvas id="barChart" class="chart" width="400" height="400"></canvas>
+      <ul class="barChart-legend"></ul>
+    </div>
+    <div class="radar">
+      <canvas id="radarChart" class="chart" width="400" height="400"></canvas>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="./chartjs.min.js"></script>
   <script src="JS/chartUI.js"></script>
 </body>
+
 </html>
