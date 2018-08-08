@@ -169,11 +169,11 @@ legend.push('<li class="legend-list"><span class="legend-bg" style="background-c
       var moved = $(this).scrollTop();
       console.log(moved);
       // 폴라 차트가 그려지는 시점
-      var polarCon = polarY - (polarHeight / 2);
+      var polarCon = polarY - (polarHeight);
       // 바 차트가 그려지는 시점
-      var barCon = barY - (barHeight / 2);
+      var barCon = barY - (barHeight);
       // 레이다 차트가 그려지는 시점
-      var radarCon = radarY - (radarHeight / 2);
+      var radarCon = radarY - (radarHeight);
 
       console.log('polar condition', polarCon);
       console.log('bar condition', barCon);
