@@ -14,7 +14,7 @@ header {
 }
 
 .title {
-  /* margin: 40px; */
+  margin: 0;
   padding: 300px 0;
   background-color: #434040;
   font-size: 40px;
