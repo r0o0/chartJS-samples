@@ -88,13 +88,13 @@ legend.push('<li class="legend-list"><span class="legend-bg" style="background-c
             // display: false,
             barThickness: 16,
             gridLines: {
-              color: '#fff',
+              color: '#eee',
               drawTicks: false
             },
             ticks: {
               padding: 15, // set space between xAxes and chart
               fontColor: '#7e7e7e',
-              
+
             }
           }],
           yAxes: [{
@@ -107,9 +107,34 @@ legend.push('<li class="legend-list"><span class="legend-bg" style="background-c
               fontColor: '#7e7e7e'
             }
           }]
-          
+        },
+        tooltips: {
+           enabled: false,
+        },
+        events: [],
+        animation: {
+          onComplete: function () {
+            var ctx = this.chart.ctx;
+            ctx.font = this.scales.font;
+            ctx.fillStyle = this.scales.textColor
+            ctx.textAlign = "center";
+            ctx.textBaseline = "bottom";
+
+            // 바들의 위치 값 참조
+            var barData = this.data.datasets[0]._meta[1].data;
+            // 바들의 데이터 값 참조
+            var value = this.data.datasets[0].data;
+    
+            barData.forEach(function(dataset, index) {
+              var data = value[index];
+              var x = dataset._view.x;
+              var y = dataset._view.y;
+              // 바 데이터 그리기
+              ctx.fillText(data, x, y - 15);
+            });
+          }
         }
-      }
+      },
     });
 
     $('.barChart-legend').html(barChart.generateLegend());
@@ -124,14 +149,22 @@ legend.push('<li class="legend-list"><span class="legend-bg" style="background-c
         labels: ['test1', 'test2', 'test3', 'test4', 'test5'],
         datasets: [{
           label: 'radar chart',
-          backgroundColor: "rgba(153,255,51,0.4)",
-          borderColor: "rgba(153,255,51,1)",
+          backgroundColor: "rgba(63,54,65,0.4)",
+          borderColor: "rgba(63,54,65,1)",
           data: [4, 5, 4, 4, 4]
         }]
       },
       options: {
         legend: false,
         scale: {
+          // horizontal lines
+          gridLines: {
+            color: '#d7d7d7'
+          },
+          // vertical lines
+          angleLines: {
+            color: '#d2d2d2'
+          },
           // data label number
           ticks: {
             min: 0,
