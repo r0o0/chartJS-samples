@@ -108,10 +108,13 @@ legend.push('<li class="legend-list"><span class="legend-bg" style="background-c
             }
           }]
         },
+        // 툴팁 없애기
         tooltips: {
            enabled: false,
         },
+        // 호버 없애기
         events: [],
+        // 애니메이션이 끝나면 바에 데이터값 표시
         animation: {
           onComplete: function () {
             var ctx = this.chart.ctx;
